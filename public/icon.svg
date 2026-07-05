@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Yellow background -->
+  <rect width="512" height="512" fill="#F2D014" />
+  
+  <!-- Stylized Q Logo -->
+  <g fill="#4E758C">
+    <!-- Outer ring with inner cutout (using fill-rule="evenodd") -->
+    <path fill-rule="evenodd" d="M 256,100 C 322.27,100 376,153.73 376,220 C 376,286.27 322.27,340 256,340 C 189.73,340 136,286.27 136,220 C 136,153.73 189.73,100 256,100 Z M 256,155 C 291.9,155 321,184.1 321,220 C 321,255.9 291.9,285 256,285 C 220.1,285 191,255.9 191,220 C 191,184.1 220.1,155 256,155 Z" />
+    
+    <!-- Central dot -->
+    <circle cx="256" cy="220" r="24" />
+    
+    <!-- Diagonal rounded tail (thick rounded bar bottom-right) -->
+    <path d="M 314,278 L 398,362 C 408,372 408,388 398,398 C 388,408 372,408 362,398 L 278,314 Z" />
+  </g>
+  
+  <!-- Arabic Text: فقار العمشاني -->
+  <text x="256" y="445" font-family="'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" font-weight="900" font-size="64" fill="#4E758C" text-anchor="middle">فقار العمشاني</text>
+</svg>

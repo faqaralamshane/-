@@ -1,0 +1,6 @@
+{
+  "name": "اقساط فقار العمشاني",
+  "description": "تطبيق إدارة الأقساط يعمل لخدمة العملاء دون اتصال بالإنترنت مع دعم السلف والديون وإشعارات العقود والمقترضين.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

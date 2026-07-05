@@ -1,0 +1,524 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Global RTL adjustments and typography */
+html {
+  font-family: var(--font-sans);
+  direction: rtl;
+  text-align: right;
+  scroll-behavior: smooth;
+  background-color: #070708;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Page transitions and animation utilities */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Text selections */
+::selection {
+  background-color: #f59e0b !important; /* Amber-500 */
+  color: #000000 !important;
+}
+
+/* ========================================== */
+/*           DYNAMIC CUSTOM THEMES            */
+/* ========================================== */
+
+/* Default / Dark Theme - Upgraded to Deep Work (العمل العميق) */
+.theme-dark, .theme-deepwork {
+  --app-bg: #030303; /* pure dark obsidian */
+  --app-card-bg: #0a0a0c; /* matte deep charcoal */
+  --app-text: #fafafa; /* ultra high contrast white */
+  --app-text-muted: #888893; /* zinc-400 */
+  --app-accent: #22c55e; /* high efficiency vibrant green */
+  --app-secondary: #3b82f6; /* calm dark blue */
+  --app-border: rgba(255, 255, 255, 0.04);
+}
+
+/* 1. Light Theme */
+.theme-light {
+  --app-bg: #f8fafc; /* slate-50 */
+  --app-card-bg: #ffffff;
+  --app-text: #0f172a; /* slate-900 */
+  --app-text-muted: #64748b; /* slate-500 */
+  --app-accent: #3b82f6; /* blue-500 */
+  --app-secondary: #f97316; /* orange */
+  --app-border: rgba(15, 23, 42, 0.08); /* slate-900 with opacity */
+}
+
+/* 2. Green Theme - Upgraded to Nature Theme (الطبيعة الخلابة) */
+.theme-green, .theme-nature {
+  --app-bg: #f2f5f0; /* Serene light Sage Green canvas */
+  --app-card-bg: #ffffff; /* pure cloud white card */
+  --app-text: #112d17; /* Forest pine deep green */
+  --app-text-muted: #4e6a53; /* Earthy moss green */
+  --app-accent: #16a34a; /* Leafy rich green */
+  --app-secondary: #d97706; /* Golden warm sun amber */
+  --app-border: rgba(21, 62, 32, 0.06);
+}
+
+/* 3. Red Theme - Upgraded to Glassmorphic Theme (الزجاجي الشفاف) */
+.theme-red, .theme-glass {
+  --app-bg: #070714; /* cosmic deep navy background */
+  --app-card-bg: rgba(255, 255, 255, 0.03); /* frosted overlay */
+  --app-text: #f8fafc;
+  --app-text-muted: #94a3b8; /* silver grey */
+  --app-accent: #38bdf8; /* sky blue */
+  --app-secondary: #ffffff;
+  --app-border: rgba(255, 255, 255, 0.08);
+}
+
+/* 4. "Fakhm" Mode - Upgraded to Game of Thrones Theme (صراع العروش) */
+.theme-fakhm, .theme-thrones {
+  --app-bg: #110c0a; /* vintage castle stone */
+  --app-card-bg: #1c1410; /* royal wood brown */
+  --app-text: #f2e7cc; /* antique parchment */
+  --app-text-muted: #dfb15b; /* royal gold */
+  --app-accent: #dfb15b; /* imperial gold */
+  --app-secondary: #b91c1c; /* medieval ruby crimson */
+  --app-border: rgba(223, 177, 91, 0.22);
+}
+
+/* 5. "Asri" Mode - Upgraded to Cyberpunk Gaming Theme (الكيمنج) */
+.theme-asri, .theme-cyberpunk {
+  --app-bg: #020206; /* retro-future virtual grid */
+  --app-card-bg: #080914; /* synthwave slate */
+  --app-text: #00f0ff; /* cyberpunk cyber cyan */
+  --app-text-muted: #ff007f; /* magenta alert */
+  --app-accent: #ff007f; /* vibrant neon pink */
+  --app-secondary: #00f0ff; /* cyan */
+  --app-border: rgba(0, 240, 255, 0.2);
+}
+
+/* 6. "Mint" Theme - Upgraded to Tokyo Streets Theme (مدينة طوكيو) */
+.theme-mint, .theme-tokyo {
+  --app-bg: #06030c; /* Tokyo midnight */
+  --app-card-bg: #100820; /* Shibuya dark violet */
+  --app-text: #fdf4ff; /* orchid white */
+  --app-text-muted: #c084fc; /* purple light */
+  --app-accent: #d946ef; /* Tokyo neon magenta */
+  --app-secondary: #3b82f6; /* neon blue */
+  --app-border: rgba(217, 70, 239, 0.16);
+}
+
+/* AUTOMATIC STYLING INHERITANCE MAPS */
+.theme-light, .theme-green, .theme-red, .theme-fakhm, .theme-asri, .theme-mint, .theme-deepwork, .theme-cyberpunk, .theme-thrones, .theme-tokyo, .theme-nature, .theme-glass {
+  background-color: var(--app-bg) !important;
+  color: var(--app-text) !important;
+}
+
+/* Force standard dark classes to map to the active theme's variables */
+.theme-light .bg-\[\#070708\], .theme-green .bg-\[\#070708\], .theme-red .bg-\[\#070708\], .theme-fakhm .bg-\[\#070708\], .theme-asri .bg-\[\#070708\], .theme-mint .bg-\[\#070708\], .theme-deepwork .bg-\[\#070708\], .theme-cyberpunk .bg-\[\#070708\], .theme-thrones .bg-\[\#070708\], .theme-tokyo .bg-\[\#070708\], .theme-nature .bg-\[\#070708\], .theme-glass .bg-\[\#070708\] {
+  background-color: var(--app-bg) !important;
+}
+
+/* Card overrides */
+.theme-light .bg-\[\#121214\]\/60, .theme-green .bg-\[\#121214\]\/60, .theme-red .bg-\[\#121214\]\/60, .theme-fakhm .bg-\[\#121214\]\/60, .theme-asri .bg-\[\#121214\]\/60, .theme-mint .bg-\[\#121214\]\/60, .theme-deepwork .bg-\[\#121214\]\/60, .theme-cyberpunk .bg-\[\#121214\]\/60, .theme-thrones .bg-\[\#121214\]\/60, .theme-tokyo .bg-\[\#121214\]\/60, .theme-nature .bg-\[\#121214\]\/60, .theme-glass .bg-\[\#121214\]\/60,
+.theme-light .bg-\[\#121214\], .theme-green .bg-\[\#121214\], .theme-red .bg-\[\#121214\], .theme-fakhm .bg-\[\#121214\], .theme-asri .bg-\[\#121214\], .theme-mint .bg-\[\#121214\], .theme-deepwork .bg-\[\#121214\], .theme-cyberpunk .bg-\[\#121214\], .theme-thrones .bg-\[\#121214\], .theme-tokyo .bg-\[\#121214\], .theme-nature .bg-\[\#121214\], .theme-glass .bg-\[\#121214\],
+.theme-light .bg-zinc-900, .theme-green .bg-zinc-900, .theme-red .bg-zinc-900, .theme-fakhm .bg-zinc-900, .theme-asri .bg-zinc-900, .theme-mint .bg-zinc-900, .theme-deepwork .bg-zinc-900, .theme-cyberpunk .bg-zinc-900, .theme-thrones .bg-zinc-900, .theme-tokyo .bg-zinc-900, .theme-nature .bg-zinc-900, .theme-glass .bg-zinc-900,
+.theme-light .bg-\[\#0c0c0e\], .theme-green .bg-\[\#0c0c0e\], .theme-red .bg-\[\#0c0c0e\], .theme-fakhm .bg-\[\#0c0c0e\], .theme-asri .bg-\[\#0c0c0e\], .theme-mint .bg-\[\#0c0c0e\], .theme-deepwork .bg-\[\#0c0c0e\], .theme-cyberpunk .bg-\[\#0c0c0e\], .theme-thrones .bg-\[\#0c0c0e\], .theme-tokyo .bg-\[\#0c0c0e\], .theme-nature .bg-\[\#0c0c0e\], .theme-glass .bg-\[\#0c0c0e\],
+.theme-light .bg-black\/25, .theme-green .bg-black\/25, .theme-red .bg-black\/25, .theme-fakhm .bg-black\/25, .theme-asri .bg-black\/25, .theme-mint .bg-black\/25, .theme-deepwork .bg-black\/25, .theme-cyberpunk .bg-black\/25, .theme-thrones .bg-black\/25, .theme-tokyo .bg-black\/25, .theme-nature .bg-black\/25, .theme-glass .bg-black\/25 {
+  background-color: var(--app-card-bg) !important;
+}
+
+/* Text overrides */
+.theme-light .text-zinc-100, .theme-green .text-zinc-100, .theme-red .text-zinc-100, .theme-fakhm .text-zinc-100, .theme-asri .text-zinc-100, .theme-mint .text-zinc-100, .theme-deepwork .text-zinc-100, .theme-cyberpunk .text-zinc-100, .theme-thrones .text-zinc-100, .theme-tokyo .text-zinc-100, .theme-nature .text-zinc-100, .theme-glass .text-zinc-100,
+.theme-light .text-white, .theme-green .text-white, .theme-red .text-white, .theme-fakhm .text-white, .theme-asri .text-white, .theme-mint .text-white, .theme-deepwork .text-white, .theme-cyberpunk .text-white, .theme-thrones .text-white, .theme-tokyo .text-white, .theme-nature .text-white, .theme-glass .text-white {
+  color: var(--app-text) !important;
+}
+
+.theme-light .text-zinc-400, .theme-green .text-zinc-400, .theme-red .text-zinc-400, .theme-fakhm .text-zinc-400, .theme-asri .text-zinc-400, .theme-mint .text-zinc-400, .theme-deepwork .text-zinc-400, .theme-cyberpunk .text-zinc-400, .theme-thrones .text-zinc-400, .theme-tokyo .text-zinc-400, .theme-nature .text-zinc-400, .theme-glass .text-zinc-400,
+.theme-light .text-zinc-500, .theme-green .text-zinc-500, .theme-red .text-zinc-500, .theme-fakhm .text-zinc-500, .theme-asri .text-zinc-500, .theme-mint .text-zinc-500, .theme-deepwork .text-zinc-500, .theme-cyberpunk .text-zinc-500, .theme-thrones .text-zinc-500, .theme-tokyo .text-zinc-500, .theme-nature .text-zinc-500, .theme-glass .text-zinc-500 {
+  color: var(--app-text-muted) !important;
+}
+
+/* Border overrides */
+.theme-light .border-white\/5, .theme-green .border-white\/5, .theme-red .border-white\/5, .theme-fakhm .border-white\/5, .theme-asri .border-white\/5, .theme-mint .border-white\/5, .theme-deepwork .border-white\/5, .theme-cyberpunk .border-white\/5, .theme-thrones .border-white\/5, .theme-tokyo .border-white\/5, .theme-nature .border-white\/5, .theme-glass .border-white\/5,
+.theme-light .border-white\/10, .theme-green .border-white\/10, .theme-red .border-white\/10, .theme-fakhm .border-white\/10, .theme-asri .border-white\/10, .theme-mint .border-white\/10, .theme-deepwork .border-white\/10, .theme-cyberpunk .border-white\/10, .theme-thrones .border-white\/10, .theme-tokyo .border-white\/10, .theme-nature .border-white\/10, .theme-glass .border-white\/10,
+.theme-light .border-zinc-800, .theme-green .border-zinc-800, .theme-red .border-zinc-800, .theme-fakhm .border-zinc-800, .theme-asri .border-zinc-800, .theme-mint .border-zinc-800, .theme-deepwork .border-zinc-800, .theme-cyberpunk .border-zinc-800, .theme-thrones .border-zinc-800, .theme-tokyo .border-zinc-800, .theme-nature .border-zinc-800, .theme-glass .border-zinc-800 {
+  border-color: var(--app-border) !important;
+}
+
+/* Accent texts override */
+.theme-light .text-amber-500, .theme-green .text-amber-500, .theme-red .text-amber-500, .theme-fakhm .text-amber-500, .theme-asri .text-amber-500, .theme-mint .text-amber-500, .theme-deepwork .text-amber-500, .theme-cyberpunk .text-amber-500, .theme-thrones .text-amber-500, .theme-tokyo .text-amber-500, .theme-nature .text-amber-500, .theme-glass .text-amber-500,
+.theme-light .text-amber-400, .theme-green .text-amber-400, .theme-red .text-amber-400, .theme-fakhm .text-amber-400, .theme-asri .text-amber-400, .theme-mint .text-amber-400, .theme-deepwork .text-amber-400, .theme-cyberpunk .text-amber-400, .theme-thrones .text-amber-400, .theme-tokyo .text-amber-400, .theme-nature .text-amber-400, .theme-glass .text-amber-400 {
+  color: var(--app-accent) !important;
+}
+
+/* Accent bg backgrounds override */
+.theme-light .bg-amber-500, .theme-green .bg-amber-500, .theme-red .bg-amber-500, .theme-fakhm .bg-amber-500, .theme-asri .bg-amber-500, .theme-mint .bg-amber-500, .theme-deepwork .bg-amber-500, .theme-cyberpunk .bg-amber-500, .theme-thrones .bg-amber-500, .theme-tokyo .bg-amber-500, .theme-nature .bg-amber-500, .theme-glass .bg-amber-500 {
+  background-color: var(--app-accent) !important;
+  color: #000000 !important;
+}
+
+.theme-light .bg-amber-500\/10, .theme-green .bg-amber-500\/10, .theme-red .bg-amber-500\/10, .theme-fakhm .bg-amber-500\/10, .theme-asri .bg-amber-500\/10, .theme-mint .bg-amber-500\/10, .theme-deepwork .bg-amber-500\/10, .theme-cyberpunk .bg-amber-500\/10, .theme-thrones .bg-amber-500\/10, .theme-tokyo .bg-amber-500\/10, .theme-nature .bg-amber-500\/10, .theme-glass .bg-amber-500\/10 {
+  background-color: transparent !important;
+  background-image: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0)) !important;
+  border-color: var(--app-accent) !important;
+  color: var(--app-accent) !important;
+}
+
+/* Nav bar overrides */
+.theme-light .bg-black\/70, .theme-green .bg-black\/70, .theme-red .bg-black\/70, .theme-fakhm .bg-black\/70, .theme-asri .bg-black\/70, .theme-mint .bg-black\/70, .theme-deepwork .bg-black\/70, .theme-cyberpunk .bg-black\/70, .theme-thrones .bg-black\/70, .theme-tokyo .bg-black\/70, .theme-nature .bg-black\/70, .theme-glass .bg-black\/70 {
+  background-color: rgba(18, 18, 20, 0.85) !important;
+  backdrop-filter: blur(24px) !important;
+}
+.theme-light .bg-black\/60, .theme-green .bg-black\/60, .theme-red .bg-black\/60, .theme-fakhm .bg-black\/60, .theme-asri .bg-black\/60, .theme-mint .bg-black\/60, .theme-deepwork .bg-black\/60, .theme-cyberpunk .bg-black\/60, .theme-thrones .bg-black\/60, .theme-tokyo .bg-black\/60, .theme-nature .bg-black\/60, .theme-glass .bg-black\/60 {
+  background-color: rgba(18, 18, 20, 0.8) !important;
+  backdrop-filter: blur(24px) !important;
+}
+
+/* Under light mode, make nav white and borders dark slate */
+.theme-light .bg-black\/70, .theme-mint .bg-black\/70 {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  color: #0f172a !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+.theme-light .bg-black\/60, .theme-mint .bg-black\/60 {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  color: #0f172a !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+.theme-light .bg-\[\#0d0d0f\]\/95, .theme-mint .bg-\[\#0d0d0f\]\/95 {
+  background-color: rgba(255, 255, 255, 0.98) !important;
+  color: #0f172a !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+.theme-light .bg-\[\#0c0c0e\], .theme-mint .bg-\[\#0c0c0e\] {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+.theme-light input, .theme-light select, .theme-light textarea {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+}
+.theme-mint input, .theme-mint select, .theme-mint textarea {
+  background-color: #f8fafc !important;
+  color: #1a1a1a !important;
+  border-color: rgba(26, 26, 26, 0.1) !important;
+}
+
+/* General button states to respect theme accent color */
+.theme-green .text-amber-500, .theme-green .text-amber-400,
+.theme-nature .text-amber-500, .theme-nature .text-amber-400 { color: var(--app-accent) !important; }
+.theme-red .text-amber-500, .theme-red .text-amber-400,
+.theme-glass .text-amber-500, .theme-glass .text-amber-400 { color: var(--app-accent) !important; }
+.theme-fakhm .text-amber-500, .theme-fakhm .text-amber-400,
+.theme-thrones .text-amber-500, .theme-thrones .text-amber-400 { color: var(--app-accent) !important; }
+.theme-asri .text-amber-500, .theme-asri .text-amber-400,
+.theme-cyberpunk .text-amber-500, .theme-cyberpunk .text-amber-400 { color: var(--app-accent) !important; }
+.theme-mint .text-amber-500, .theme-mint .text-amber-400,
+.theme-tokyo .text-amber-500, .theme-tokyo .text-amber-400 { color: var(--app-accent) !important; }
+
+/* Custom selection adjustments */
+.theme-green ::selection, .theme-nature ::selection { background-color: #16a34a !important; color: #ffffff !important; }
+.theme-red ::selection, .theme-glass ::selection { background-color: #38bdf8 !important; color: #000000 !important; }
+.theme-fakhm ::selection, .theme-thrones ::selection { background-color: #dfb15b !important; color: #110c0a !important; }
+.theme-asri ::selection, .theme-cyberpunk ::selection { background-color: #ff007f !important; color: #ffffff !important; }
+.theme-light ::selection { background-color: #3b82f6 !important; color: #ffffff !important; }
+.theme-mint ::selection, .theme-tokyo ::selection { background-color: #d946ef !important; color: #ffffff !important; }
+
+/* ========================================== */
+/*   1. MOOD: DEEP WORK (العمل العميق والتركيز) */
+/* ========================================== */
+.theme-deepwork, .theme-dark {
+  font-family: 'JetBrains Mono', 'Inter', monospace !important;
+}
+/* Flat, compact boxes with 4px tight radius and minimal spacing */
+.theme-deepwork .rounded-xl,
+.theme-deepwork .rounded-lg,
+.theme-deepwork .rounded-md,
+.theme-deepwork .rounded-2xl,
+.theme-deepwork .rounded-\[22px\],
+.theme-deepwork input,
+.theme-deepwork select,
+.theme-deepwork textarea,
+.theme-deepwork button {
+  border-radius: 6px !important;
+}
+.theme-deepwork .p-5, .theme-deepwork .p-6 {
+  padding: 0.85rem !important;
+}
+.theme-deepwork .gap-4, .theme-deepwork .gap-5, .theme-deepwork .gap-6 {
+  gap: 0.5rem !important;
+}
+/* Reorder elements for deep work: prioritize list & stats instantly, simplify header */
+.theme-deepwork .grid {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+  gap: 0.5rem !important;
+}
+/* Minimalist borders and no active glow */
+.theme-deepwork .border, .theme-deepwork .border-white\/5 {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+.theme-deepwork shadow-xl, .theme-deepwork shadow-2xl {
+  box-shadow: none !important;
+}
+
+/* ========================================== */
+/*   2. MOOD: CYBERPUNK GAMING (سايبر بانك نيون) */
+/* ========================================== */
+.theme-cyberpunk, .theme-asri {
+  background-image: 
+    linear-gradient(rgba(0, 240, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.02) 1px, transparent 1px) !important;
+  background-size: 20px 20px !important;
+}
+.theme-cyberpunk .rounded-xl,
+.theme-cyberpunk .rounded-lg,
+.theme-cyberpunk .rounded-md,
+.theme-cyberpunk .rounded-2xl,
+.theme-cyberpunk .rounded-\[22px\],
+.theme-cyberpunk input,
+.theme-cyberpunk select,
+.theme-cyberpunk textarea,
+.theme-cyberpunk button {
+  border-radius: 0px !important; /* Sharp futuristic edges */
+  border-width: 2px !important;
+  border-color: #ff007f !important;
+  box-shadow: 0 0 8px rgba(255, 0, 127, 0.35) !important;
+}
+.theme-cyberpunk button {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background-color: transparent !important;
+  border: 2px solid #00f0ff !important;
+  color: #00f0ff !important;
+}
+.theme-cyberpunk button:hover {
+  background-color: #00f0ff !important;
+  color: #000000 !important;
+  box-shadow: 0 0 15px #00f0ff !important;
+}
+/* Gaming Grid layouts: make charts and tables feel like digital HUD cockpit */
+.theme-cyberpunk .bg-\[\#121214\]\/60,
+.theme-cyberpunk .bg-zinc-900,
+.theme-cyberpunk .bg-\[\#121214\] {
+  background-color: rgba(8, 9, 22, 0.95) !important;
+  border: 2px solid #ff007f !important;
+  position: relative;
+}
+.theme-cyberpunk .bg-\[\#121214\]\/60::before {
+  content: "» HUD STATUS";
+  position: absolute;
+  top: 2px;
+  right: 6px;
+  font-size: 8px;
+  color: #00f0ff;
+  font-weight: bold;
+}
+
+/* ========================================== */
+/*   3. MOOD: GAME OF THRONES (صراع العروش)  */
+/* ========================================== */
+.theme-thrones, .theme-fakhm {
+  font-family: 'Georgia', 'Times New Roman', serif !important;
+}
+.theme-thrones h1, .theme-thrones h2, .theme-thrones h3, .theme-thrones .font-bold {
+  font-family: 'Georgia', serif !important;
+  letter-spacing: 0.02em;
+  color: #dfb15b !important;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+}
+.theme-thrones .rounded-xl,
+.theme-thrones .rounded-lg,
+.theme-thrones .rounded-md,
+.theme-thrones .rounded-2xl,
+.theme-thrones .rounded-\[22px\] {
+  border-radius: 4px !important;
+  border: 3px double #dfb15b !important; /* Antique double border */
+  background-color: #1a120e !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.7) !important;
+}
+.theme-thrones input,
+.theme-thrones select,
+.theme-thrones textarea {
+  background-color: #271d18 !important;
+  color: #f2e7cc !important;
+  border: 1px solid #dfb15b !important;
+}
+/* Royal layout: elegant spacing, classic borders, gold accents */
+.theme-thrones button {
+  background: linear-gradient(to bottom, #881c1c, #550a0a) !important;
+  border: 1px solid #dfb15b !important;
+  color: #f2e7cc !important;
+  text-shadow: 0 1px 2px black;
+}
+.theme-thrones button:hover {
+  background: #dfb15b !important;
+  color: #110c0a !important;
+}
+
+/* ========================================== */
+/*   4. MOOD: TOKYO MIDNIGHT (شوارع طوكيو ليلًا) */
+/* ========================================== */
+.theme-tokyo, .theme-mint {
+  font-family: 'Inter', sans-serif !important;
+}
+.theme-tokyo .rounded-xl,
+.theme-tokyo .rounded-lg,
+.theme-tokyo .rounded-md,
+.theme-tokyo .rounded-2xl,
+.theme-tokyo .rounded-\[22px\] {
+  border-radius: 12px !important;
+  border: 1px solid rgba(217, 70, 239, 0.3) !important;
+  box-shadow: 0 0 15px rgba(217, 70, 239, 0.1) !important;
+}
+.theme-tokyo input, .theme-tokyo select, .theme-tokyo textarea {
+  background-color: #180d2d !important;
+  border-color: rgba(217, 70, 239, 0.25) !important;
+  color: #fdf4ff !important;
+}
+.theme-tokyo button {
+  background: linear-gradient(135deg, #d946ef, #3b82f6) !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 12px !important;
+}
+.theme-tokyo button:hover {
+  box-shadow: 0 0 18px rgba(217, 70, 239, 0.6) !important;
+  transform: translateY(-1px);
+}
+
+/* ========================================== */
+/*   5. MOOD: NATURE SCENIC ART (الطبيعة الخلابة) */
+/* ========================================== */
+.theme-nature, .theme-green {
+  font-family: 'Inter', system-ui, sans-serif !important;
+}
+/* Soft, organic, giant rounded corners like river stones */
+.theme-nature .rounded-xl,
+.theme-nature .rounded-lg,
+.theme-nature .rounded-md,
+.theme-nature .rounded-2xl,
+.theme-nature .rounded-\[22px\],
+.theme-nature input,
+.theme-nature select,
+.theme-nature textarea,
+.theme-nature button {
+  border-radius: 26px !important;
+}
+.theme-nature .bg-white,
+.theme-nature .bg-\[\#121214\]\/60,
+.theme-nature .bg-zinc-900,
+.theme-nature .bg-\[\#121214\],
+.theme-nature .bg-black\/25 {
+  background-color: #ffffff !important;
+  box-shadow: 0 15px 45px -15px rgba(21, 62, 32, 0.08) !important;
+  border: 1px solid rgba(21, 62, 32, 0.05) !important;
+}
+.theme-nature button {
+  background-color: #16a34a !important;
+  color: #ffffff !important;
+}
+.theme-nature button:hover {
+  background-color: #15803d !important;
+  transform: scale(1.02);
+}
+.theme-nature input, .theme-nature select, .theme-nature textarea {
+  background-color: #f7faf6 !important;
+  color: #112d17 !important;
+  border-color: rgba(21, 62, 32, 0.1) !important;
+}
+/* Scenic layout: extra spacing and margins to act like a painting canvas */
+.theme-nature .p-5, .theme-nature .p-6 {
+  padding: 1.75rem !important;
+}
+.theme-nature .gap-4, .theme-nature .gap-5, .theme-nature .gap-6 {
+  gap: 1.5rem !important;
+}
+
+/* ========================================== */
+/*   6. MOOD: GLASSMORPHISM (التصميم الزجاجي الشفاف) */
+/* ========================================== */
+.theme-glass, .theme-red {
+  background: radial-gradient(circle at 50% 50%, #15102a 0%, #060512 100%) !important;
+}
+.theme-glass .bg-white,
+.theme-glass .bg-black\/25,
+.theme-glass .bg-black\/10,
+.theme-glass .bg-\[\#121214\]\/80,
+.theme-glass .bg-\[\#121214\]\/60,
+.theme-glass .bg-\[\#121214\],
+.theme-glass .bg-zinc-900,
+.theme-glass .bg-\[\#0c0c0e\] {
+  background: rgba(255, 255, 255, 0.03) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.09) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
+}
+.theme-glass .rounded-xl,
+.theme-glass .rounded-lg,
+.theme-glass .rounded-md,
+.theme-glass .rounded-2xl,
+.theme-glass .rounded-\[22px\] {
+  border-radius: 16px !important;
+}
+.theme-glass input, .theme-glass select, .theme-glass textarea {
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(10px) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+.theme-glass button {
+  background: rgba(56, 189, 248, 0.2) !important;
+  backdrop-filter: blur(8px) !important;
+  color: #38bdf8 !important;
+  border: 1px solid rgba(56, 189, 248, 0.4) !important;
+}
+.theme-glass button:hover {
+  background: rgba(56, 189, 248, 0.4) !important;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.3) !important;
+}
+
+
